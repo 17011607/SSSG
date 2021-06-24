@@ -1,0 +1,44 @@
+<html>
+<head>
+	<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+</head>
+<body>
+	<div id="app">
+		<p>{{title}}</p>
+		<p>{{howAreYou()}}</p>
+		<p>{{sayHello()}}</p>
+		<a v-bind:href="link">link</a>
+		<a :href="link">link2</a>
+		<p>{{number}}</p>
+		<button v-on:click="increment">increment</button>
+		<button @click="decrement">decrement</button>
+	</div>
+
+	<script>
+		new Vue({
+			el: '#app',
+			data:{
+				title: 'Hello!',
+				link:"https://www.google.com",
+				number:0
+			},
+			methods:{
+				howAreYou:function(){
+					return "HowAreYouFunc!";
+				},
+				sayHello:function(){
+					return this.title;
+				},
+				increment:function(){
+					this.number++;
+				},
+				decrement:function(){
+					this.number--;
+				}
+			}
+		})
+
+	</script>
+</body>
+</html>
+

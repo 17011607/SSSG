@@ -6,7 +6,7 @@ var app = http.createServer(function(request,response){
 	if(request.url == '/'){
 		url = '/index.html';
    	 }
-	else if(request.url == '/test.txt'){
+	else if(request.url == '/test.html'){
 	response.writeHead(200);
 	response.end(fs.readFileSync(__dirname+url));
 	response.end();
