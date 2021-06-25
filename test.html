@@ -1,5 +1,6 @@
 <html>
 <head>
+	<meta charset="utf-8">
 	<script src="https://cdn.jsdelivr.net/npm/vue"></script>
 </head>
 <body>
@@ -10,8 +11,26 @@
 		<a v-bind:href="link">link</a>
 		<a :href="link">link2</a>
 		<p>{{number}}</p>
+		<button @click="addCount(2)">값 2증가</button>
+		<div @mousemove="addCount(2)">
+			마우스 움직이기 ㄱㄱ
+			<span @mousemove.stop="">멈춰!</span>
+			다시 ㄱㄱ
+		</div>
 		<button v-on:click="increment">increment</button>
 		<button @click="decrement">decrement</button>
+		<input @keyup.enter="rollDice">enter 입력 시 숫자바뀜</input>
+		<p v-once>{{title}}</p>
+		<p>{{sayHello2()}}</p>
+		<p v-html="aLinkToMedium"></p>
+		<div>
+			<p>{{count}}</p>
+			<p>{{secondCount}}</p>
+			<p>{{double}}</p>
+			<p>{{triple()}}</p>
+			<button @click="count++">클릭</button>
+			<button @click="secondCount++">클릭2</button>
+		</div>
 	</div>
 
 	<script>
@@ -20,7 +39,10 @@
 			data:{
 				title: 'Hello!',
 				link:"https://www.google.com",
-				number:0
+				number:0,
+				aLinkToMedium:"<a href='www.google.com'>구글</a>",
+				count:0,
+				secondCount:0
 			},
 			methods:{
 				howAreYou:function(){
@@ -34,6 +56,28 @@
 				},
 				decrement:function(){
 					this.number--;
+				},
+				sayHello2:function(){
+					this.title = "안녕!";
+					return this.title;
+				},
+				rollDice:function(){
+					// 임의의 변수 N에 1~6사이의 임의의 숫자를 반환
+					let N = Math.floor(Math.random() * (6)) + 1;
+					this.number = N;
+				},
+				addCount(count){
+					this.number = count + this.number
+				},
+				triple:function(){
+					console.log("triple!");
+					return this.count * 3;
+				}
+			},
+			computed:{
+				double:function(){
+					console.log("double!");
+					return this.count*2;
 				}
 			}
 		})
